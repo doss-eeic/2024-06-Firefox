@@ -1,5 +1,0 @@
-[DEFAULT]
-prefs = ["sidebar.revamp=false"]
-dupe-manifest = true
-
-["include:browser-common.toml"]
