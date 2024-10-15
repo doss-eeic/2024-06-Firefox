@@ -1,2 +1,11 @@
+# Enable debug versions of the pre-built binary artifacts:
+ac_add_options --enable-debug
+
 # Automatically download and use compiled C++ components:
 ac_add_options --enable-artifact-builds
+
+# Download debug info so that stack traces refers to file and columns rather than library and Hex address
+ac_add_options --enable-artifact-build-symbols
+
+# Write build artifacts to:
+mk_add_options MOZ_OBJDIR=./objdir-frontend-debug-artifact
