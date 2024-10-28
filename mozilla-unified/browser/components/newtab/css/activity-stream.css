@@ -704,6 +704,48 @@ main section {
   background: image-set(url("chrome://branding/content/about-logo.png"), url("chrome://branding/content/about-logo@2x.png") 2x) no-repeat center;
   background-size: 64px;
 }
+.logo-and-wordmark .logo1 {
+  display: inline-block;
+  height: 64px;
+  width: 64px;
+  background: image-set(url("chrome://branding/content/about-logo1.png")) no-repeat center;
+  background-size: 64px;
+}
+.logo-and-wordmark .logo2 {
+  display: inline-block;
+  height: 64px;
+  width: 64px;
+  background: image-set(url("chrome://branding/content/about-logo2.png")) no-repeat center;
+  background-size: 64px;
+}
+.logo-and-wordmark .logo3 {
+  display: inline-block;
+  height: 64px;
+  width: 64px;
+  background: image-set(url("chrome://branding/content/about-logo3.png")) no-repeat center;
+  background-size: 64px;
+}
+.logo-and-wordmark .logo4 {
+  display: inline-block;
+  height: 64px;
+  width: 64px;
+  background: image-set(url("chrome://branding/content/about-logo4.png")) no-repeat center;
+  background-size: 64px;
+}
+.logo-and-wordmark .logo5 {
+  display: inline-block;
+  height: 64px;
+  width: 64px;
+  background: image-set(url("chrome://branding/content/about-logo5.png")) no-repeat center;
+  background-size: 64px;
+}
+.logo-and-wordmark .logo6 {
+  display: inline-block;
+  height: 64px;
+  width: 64px;
+  background: image-set(url("chrome://branding/content/about-logo6.png")) no-repeat center;
+  background-size: 64px;
+}
 .logo-and-wordmark .wordmark {
   background: url("chrome://branding/content/firefox-wordmark.svg") no-repeat center center;
   background-size: 105px;
