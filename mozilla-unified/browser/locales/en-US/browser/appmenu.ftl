@@ -19,6 +19,10 @@ appmenuitem-banner-update-unsupported =
 appmenuitem-banner-update-restart =
     .label = Update available — restart now
 
+appmenuitem-save-tabs =
+    .label = Save tabs
+appmenuitem-restore-saved-tabs =
+    .label = Restore saved tabs
 appmenuitem-new-tab =
     .label = New tab
 appmenuitem-new-window =

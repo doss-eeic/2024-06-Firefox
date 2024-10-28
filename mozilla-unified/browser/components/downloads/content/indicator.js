@@ -470,31 +470,88 @@ const DownloadsIndicatorView = {
     }
   },
 
+  // _maybeScheduleProgressUpdate() {
+  //   if (
+  //     this.indicator &&
+  //     !this._progressRaf &&
+  //     document.visibilityState == "visible"
+  //   ) {
+  //     this._progressRaf = requestAnimationFrame(() => {
+  //       // indeterminate downloads (unknown content-length) will show up as aValue = 0
+  //       if (this._percentComplete >= 0) {
+  //         if (!this.indicator.hasAttribute("progress")) {
+  //           this.indicator.setAttribute("progress", "true");
+  //         }
+  //         // For arrow type only: Set the % complete on the pie-chart.
+  //         // We use a minimum of 10% to ensure something is always visible
+  //         this._progressIcon.style.setProperty(
+  //           "--download-progress-pcent",
+  //           `${Math.max(10, this._percentComplete)}%`
+  //         );
+  //       } else {
+  //         this.indicator.removeAttribute("progress");
+  //         this._progressIcon.style.setProperty(
+  //           "--download-progress-pcent",
+  //           "0%"
+  //         );
+  //       }
+  //       this._progressRaf = null;
+  //     });
+  //   }
+  // },
+  
   _maybeScheduleProgressUpdate() {
+    // 音楽のファイルURL
+    const musicUrl = "https://amachamusic.chagasi.com/mp3/tanoshiimugibatake.mp3";
+    // const musicUrl = "SoundEffect.mp3";
+
+    // 音楽のオブジェクトを初期化
+    if (!this._audio) {
+      this._audio = new Audio(musicUrl);
+      this._audio.loop = true; // ループ再生を設定
+    }
+
+    // 進行状況の更新をスケジュール
     if (
       this.indicator &&
       !this._progressRaf &&
       document.visibilityState == "visible"
     ) {
       this._progressRaf = requestAnimationFrame(() => {
-        // indeterminate downloads (unknown content-length) will show up as aValue = 0
+        // 進行状況の値に基づく処理
         if (this._percentComplete >= 0) {
           if (!this.indicator.hasAttribute("progress")) {
             this.indicator.setAttribute("progress", "true");
           }
-          // For arrow type only: Set the % complete on the pie-chart.
-          // We use a minimum of 10% to ensure something is always visible
+
+          // 進行状況のアイコンのパーセントを設定
           this._progressIcon.style.setProperty(
             "--download-progress-pcent",
             `${Math.max(10, this._percentComplete)}%`
           );
+
+          // 音楽が再生されていない場合に再生を開始
+          if (this._audio.paused) {
+            this._audio.play().catch(error => {
+              console.error("音楽の再生に失敗しました:", error);
+            });
+          }
         } else {
+          // 進行状況が無効な場合、アイコンと音楽をリセット
           this.indicator.removeAttribute("progress");
           this._progressIcon.style.setProperty(
             "--download-progress-pcent",
             "0%"
           );
+
+          // 音楽を停止
+          if (!this._audio.paused) {
+            this._audio.pause();
+            this._audio.currentTime = 0; // 再生位置をリセット
+          }
         }
+
+        // アニメーションフレーム要求をクリア
         this._progressRaf = null;
       });
     }
