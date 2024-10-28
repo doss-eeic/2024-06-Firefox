@@ -10157,12 +10157,19 @@ const NEWTAB_DARK_THEME = {
 
 
 function Logo() {
+  // ロゴのクラス名リスト
+  const logoClasses = ["logo", "logo1", "logo2", "logo3", "logo4", "logo5", "logo6"]; // 好きな数だけ追加可能
+  
+  // ランダムにインデックスを選択してクラス名を取得
+  const randomIndex = Math.floor(Math.random() * logoClasses.length);
+  const selectedLogoClass = logoClasses[randomIndex];
+
   return /*#__PURE__*/external_React_default().createElement("div", {
     className: "logo-and-wordmark",
     role: "img",
     "data-l10n-id": "newtab-logo-and-wordmark"
   }, /*#__PURE__*/external_React_default().createElement("div", {
-    className: "logo"
+    className: selectedLogoClass
   }), /*#__PURE__*/external_React_default().createElement("div", {
     className: "wordmark"
   }));
