@@ -84,6 +84,8 @@
     <command id="cmd_gestureRotateRight" />
     <command id="cmd_gestureRotateEnd" />
     <command id="Browser:OpenLocation" />
+    <command id="Browser:SaveTabs" />
+    <command id="Browser:RestoreSavedTabs" />
     <command id="Browser:RestoreLastSession" disabled="true"/>
     <command id="Browser:NewUserContextTab" />
     <command id="Browser:OpenAboutContainers" />
