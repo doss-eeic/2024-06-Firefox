@@ -2,6 +2,7 @@
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+let openTabsBackup = []; // メモリ内にタブ情報を保存するための配列
 
 document.addEventListener(
   "MozBeforeInitialXULLayout",
@@ -189,6 +190,39 @@ document.addEventListener(
             break;
           case "Browser:RestoreLastSession":
             SessionStore.restoreLastSession();
+            break;
+                      case "Browser:SaveTabs":
+            function saveOpenTabsToMemory() {
+                openTabsBackup = []; // バックアップを初期化
+                let tabbrowser = gBrowser; // gBrowserはタブブラウザのインスタンス
+            
+                for (let tab of tabbrowser.tabs) {
+                    openTabsBackup.push({
+                        title: tab.label,
+                        url: tab.linkedBrowser.currentURI.spec
+                    });
+                }
+            
+                console.log("Currently open tabs have been backed up to memory.");
+            }
+            saveOpenTabsToMemory();                
+            break;
+          case "Browser:RestoreSavedTabs":
+            function restoreOpenTabsFromMemory() {
+              if (openTabsBackup.length === 0) {
+                  console.error("No backup found in memory.");
+                  return;
+              }
+          
+              for (let tabInfo of openTabsBackup) {
+                  let newTab = gBrowser.addTab(tabInfo.url, {
+                      triggeringPrincipal: Services.scriptSecurityManager.getSystemPrincipal() // Principalを設定
+                  }); 
+                  newTab.label = tabInfo.title; // タブのタイトルを設定
+              }
+              console.log("Tabs have been restored from memory.");
+            }
+            restoreOpenTabsFromMemory();
             break;
           case "Browser:NewUserContextTab":
             openNewUserContextTab(event.sourceEvent);
