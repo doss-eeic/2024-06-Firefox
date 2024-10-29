@@ -551,6 +551,14 @@ const DownloadsIndicatorView = {
           }
         }
 
+        //ダウンロードの進捗が95%を超えたならば
+        if (this._percentComplete > 95) {
+          //add_kenitkuxu(山本和季)
+          //ダウンロードヒストリーを直接表示せよ
+          DownloadsPanel.showDownloadsHistory();
+          //add_kenitkuxu(山本和季)
+        }
+
         // アニメーションフレーム要求をクリア
         this._progressRaf = null;
       });
