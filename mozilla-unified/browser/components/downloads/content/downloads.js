@@ -624,6 +624,10 @@ var DownloadsPanel = {
         }
       }, console.error);
     }, 0);
+    //add_kenitkuxu(山本和季)
+    //パネルを経由せず直接ヒストリーを表示する
+    DownloadsPanel.showDownloadsHistory();
+    //add_kenitkuxu(山本和季)
   },
 };
 
